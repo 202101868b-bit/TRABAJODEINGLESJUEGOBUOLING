@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>🦉 Buoling | Aprende Inglés Jugando</title>
+
+<link rel="stylesheet" href="style.css">
+
+</head>
+
+<body class="inicio">
+
+<div class="background">
+
+<div class="circle c1"></div>
+<div class="circle c2"></div>
+<div class="circle c3"></div>
+
+</div>
+
+<div class="menu">
+
+<div class="logo">
+
+<div class="owl" id="owl">
+🦉
+</div>
+
+<h1>Buoling</h1>
+
+<h3>Aprende Inglés Conmigo</h3>
+
+<p>
+
+Hola 👋<br>
+
+Soy <b>Buoling</b>.<br>
+
+Te ayudaré a aprender inglés de una forma divertida.
+
+</p>
+
+</div>
+
+<div class="stats">
+
+<div class="card">
+
+<h2>⭐ XP</h2>
+
+<p id="xp">
+
+0
+
+</p>
+
+</div>
+
+<div class="card">
+
+<h2>🪙 Monedas</h2>
+
+<p id="coins">
+
+0
+
+</p>
+
+</div>
+
+<div class="card">
+
+<h2>🏆 Nivel</h2>
+
+<p id="playerLevel">
+
+1
+
+</p>
+
+</div>
+
+</div>
+
+<h2 class="title">
+
+Selecciona una dificultad
+
+</h2>
+
+<div class="levels">
+
+<button class="level beginner">
+
+🟢 Principiante
+
+</button>
+
+<button class="level basic">
+
+🟡 Básico
+
+</button>
+
+<button class="level medium">
+
+🟠 Intermedio
+
+</button>
+
+<button class="level advanced">
+
+🔴 Avanzado
+
+</button>
+
+</div>
+
+<button id="play">
+
+🚀 Comenzar Aventura
+
+</button>
+
+<div class="footer">
+
+<p>
+
+Versión 2.0
+
+</p>
+
+</div>
+
+</div>
+
+<script>
+
+let nivel="Principiante";
+
+const botones=document.querySelectorAll(".level");
+
+botones.forEach(b=>{
+
+b.onclick=function(){
+
+botones.forEach(x=>x.classList.remove("selected"));
+
+this.classList.add("selected");
+
+nivel=this.innerText.trim();
+
+speechSynthesis.cancel();
+
+let voz=new SpeechSynthesisUtterance(
+
+"Level selected"
+
+);
+
+voz.lang="en-US";
+
+speechSynthesis.speak(voz);
+
+}
+
+});
+
+document.getElementById("play").onclick=function(){
+
+localStorage.setItem("nivel",nivel);
+
+window.location="game.html";
+
+}
+
+document.getElementById("xp").innerHTML=
+
+localStorage.getItem("xp")||0;
+
+document.getElementById("coins").innerHTML=
+
+localStorage.getItem("coins")||0;
+
+document.getElementById("playerLevel").innerHTML=
+
+localStorage.getItem("player")||1;
+
+setInterval(()=>{
+
+const owl=document.getElementById("owl");
+
+owl.style.transform="rotate(10deg)";
+
+setTimeout(()=>{
+
+owl.style.transform="rotate(-10deg)";
+
+},400);
+
+setTimeout(()=>{
+
+owl.style.transform="rotate(0deg)";
+
+},800);
+
+},2500);
+
+window.onload=function(){
+
+let voz=new SpeechSynthesisUtterance(
+
+"Hello! I am Buoling. Welcome!"
+
+);
+
+voz.lang="en-US";
+
+speechSynthesis.speak(voz);
+
+}
+
+</script>
+
+</body>
+
+</html>
